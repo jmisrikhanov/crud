@@ -1,0 +1,192 @@
+<form [formGroup]="addForm" (ngSubmit)="save()">
+  <div class="container mt-3">
+    <legend>Add A New Transfer</legend>
+    <div class="mb-3">
+      <label for="accountHolder" class="form-label">Account Holder</label>
+      <input
+        type="text"
+        formControlName="account_holder"
+        name="account_holder"
+        [(ngModel)]="transferForm.account_holder"
+        class="form-control"
+        id="accountHolder"
+        required
+      />
+      <span
+        class="error text-danger"
+        *ngIf="account_holder?.invalid && account_holder?.touched"
+        >Name is invalid</span
+      >
+    </div>
+
+    <div class="mb-3">
+      <form [formGroup]="reactiveForm" autocomplete="off" novalidate>
+        <label for="IBAN" class="col-sm-2 col-form-label">IBAN:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="IBAN"
+          name="IBAN"
+          formControlName="IBAN"
+          [(ngModel)]="transferForm.IBAN"
+          required
+        />
+
+        <div
+          *ngIf="IBAN.invalid && (IBAN.dirty || IBAN.touched)"
+          class="alert alert-danger"
+        >
+          <div *ngIf="IBAN.errors?.['required']">IBAN is required.</div>
+          <div *ngIf="IBAN.errors?.['iban']">IBAN is invalid</div>
+        </div>
+        <div
+          *ngIf="IBAN.valid && (IBAN.dirty || IBAN.touched)"
+          class="alert alert-success"
+        >
+          IBAN is valid.
+        </div>
+      </form>
+    </div>
+
+    <div class="mb-3">
+      <label for="transferDate" class="form-label">Date</label>
+      <input
+        type="text"
+        formControlName="transferDate"
+        name="transferDate"
+        [(ngModel)]="transferForm.date"
+        class="form-control"
+        id="transferDate"
+      />
+      <span
+        class="error text-danger"
+        *ngIf="transferDate?.invalid && transferDate?.touched"
+        >Date is invalid</span
+      >
+    </div>
+    <div class="mb-3">
+      <label for="transferAmount" class="form-label">Amount</label>
+      <input
+        type="number"
+        pattern="[0-9.,]+"
+        formControlName="transferAmount"
+        name="transferAmount"
+        [(ngModel)]="transferForm.amount"
+        class="form-control"
+        id="transferAmount"
+      />
+      <span
+        class="error text-danger"
+        *ngIf="transferAmount?.invalid && transferAmount?.touched"
+        >Amount is invalid</span
+      >
+    </div>
+
+    <div class="mb-3">
+      <label for="transferAmount" class="form-label">Date</label>
+      <input class="form-control" [(ngModel)]="transferForm.date" type="date" />
+    </div>
+
+    <div class="mb-3">
+      <label for="transferNote" class="form-label">Note</label>
+      <textarea
+        name="transferNote"
+        [(ngModel)]="transferForm.note"
+        class="form-control"
+        id="transferNote"
+        rows="3"
+      ></textarea>
+    </div>
+
+    <form class="row row-cols-sm-auto">
+      <div class="col-12">
+        <div class="input-group">
+          <input
+            class="form-control"
+            formControlName="date"
+            name="date"
+            placeholder="dd-mm-yyyy"
+            name="dp"
+            [(ngModel)]="transferForm.date"
+            ngbDatepicker
+            #d="ngbDatepicker"
+          />
+          <button
+            class="btn btn-outline-secondary calendar"
+            (click)="d.toggle()"
+            type="button"
+          ></button>
+        </div>
+      </div>
+    </form>
+
+    <button type="submit" [disabled]="addForm.invalid" class="btn btn-dark">
+      Create
+    </button>
+  </div>
+</form>
+
+<!-- <form ng-app="myApp" ng-controller="validateCtrl" name="myForm" novalidate>
+  <p>
+    Username:<br />
+    <input type="text" name="user" ng-model="user" required />
+    <span
+      style="color: red"
+      ng-show="myForm.user.$dirty && myForm.user.$invalid"
+    >
+      <span ng-show="myForm.user.$error.required">Username is required.</span>
+    </span>
+  </p>
+
+  <p>
+    Email:<br />
+    <input type="email" name="email" ng-model="email" required />
+    <span
+      style="color: red"
+      ng-show="myForm.email.$dirty && myForm.email.$invalid"
+    >
+      <span ng-show="myForm.email.$error.required">Email is required.</span>
+      <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+    </span>
+  </p>
+
+  <p>
+    <input
+      type="submit"
+      ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||  
+myForm.email.$dirty && myForm.email.$invalid"
+    />
+  </p>
+</form>
+
+<script>
+  var app = angular.module("myApp", []);
+  app.controller("validateCtrl", function ($scope) {
+    $scope.user = "John Doe";
+    $scope.email = "john.doe@gmail.com";
+  });
+</script> -->
+
+<div class="col-6">
+  <form class="row row-cols-sm-auto">
+    <div class="col-12">
+      <div class="input-group">
+        <input
+          class="form-control"
+          placeholder="dd/mm/yyyy"
+          name="d2"
+          #c2="ngModel"
+          [(ngModel)]="transferForm.date"
+          ngbDatepicker
+          #d2="ngbDatepicker"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <button
+          class="btn btn-outline-secondary calendar"
+          (click)="d2.toggle()"
+          type="button"
+        ></button>
+      </div>
+    </div>
+  </form>
+</div>

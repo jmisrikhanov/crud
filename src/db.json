@@ -1,0 +1,20 @@
+{
+  "transfers": [
+    {
+      "id": 1,
+      "account_holder": "asdas",
+      "date": "account_holder",
+      "IBAN": "asdas",
+      "amount": 2131,
+      "note": "sadas"
+    },
+    {
+      "id": 2,
+      "account_holder": "adas",
+      "IBAN": "2312e",
+      "date": "asdas",
+      "amount": 21312,
+      "note": "asdasdas"
+    }
+  ]
+}

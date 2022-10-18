@@ -1,0 +1,125 @@
+<!-- <div class="container mt-2">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let transfer of transfers$ | async">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ transfer.title }}</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ transfer.author }}</li>
+            <li class="list-group-item">{{ transfer.amount }}</li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <a class="btn btn-dark" [routerLink]="['/edit', transfer.id]">Edit</a>
+          <button
+            class="btn btn-dark"
+            type="button"
+            (click)="openDeleteModal(transfer.id)"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div
+  class="modal fade"
+  id="deleteModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Delete Confirmation
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">Are you sure to delete this item?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-danger" (click)="confirmDelete()">
+          Confirm Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form class="transfer-form">
+  <div class="m-3 mx-5 row">
+    <label
+      for="table-complete-search"
+      class="col-xs-3 col-sm-auto col-form-label"
+      >Full text search:</label
+    >
+    <div class="col-xs-3 col-sm-auto">
+      <!-- <input id="table-complete-search" type="text" class="form-control" name="searchTerm" [(ngModel)]="service.searchTerm"> -->
+    </div>
+    <span class="col col-form-label"> Loading...</span>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Account Holder</th>
+        <th scope="col">IBAN</th>
+        <th scope="col">Date</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Note</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transfer of transfers$ | async">
+        <td>
+          {{ transfer.account_holder }}
+          <!-- Javid Misrikhanov -->
+        </td>
+        <td>
+          {{ transfer.IBAN }}
+          <!-- DE12322322434242242 -->
+        </td>
+        <td>
+          {{ transfer.date | date: "dd.MM.yyyy" }}
+          <!-- 11.22.2022 -->
+        </td>
+        <td>
+          {{ transfer.amount | currency: "EUR":true }}
+          <!-- 5000.00$ -->
+        </td>
+        <td>
+          {{ transfer.note }}
+          <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus quis
+          maxime unde accusamus illo! Beatae pariatur quia porro debitis
+          repudiandae? lorem20 -->
+        </td>
+        <td>
+          <div class="card-body">
+            <a class="btn btn-primary" [routerLink]="['/edit', transfer.id]"
+              >Edit</a
+            >
+            <button
+              class="btn btn-danger ms-2"
+              type="button"
+              (click)="openDeleteModal(transfer.id)"
+            >
+              Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>

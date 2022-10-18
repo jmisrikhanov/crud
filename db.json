@@ -1,0 +1,44 @@
+{
+  "transfers": [
+    {
+      "id": 1,
+      "account_holder": "JNAkjdsna JLKASDJAKJ",
+      "IBAN": "DEASDASDasd1",
+      "date": "11.22.2023",
+      "amount": 123123.33,
+      "note": "asda sdafnsadlkn lfnsdalkns,m dlsjdflkansd,m jkefwdlkn dsain sdmf aslknlksd "
+    },
+    {
+      "id": 5,
+      "account_holder": "asdas",
+      "IBAN": "asda",
+      "date": "12.12.2022",
+      "amount": 12222323232,
+      "note": ""
+    },
+    {
+      "id": 6,
+      "account_holder": "",
+      "IBAN": "",
+      "date": "",
+      "amount": 0,
+      "note": ""
+    },
+    {
+      "id": 7,
+      "account_holder": "asda",
+      "IBAN": "asdas",
+      "date": "11.22.2023",
+      "amount": 0,
+      "note": ""
+    },
+    {
+      "id": 8,
+      "account_holder": "klkn",
+      "IBAN": "",
+      "date": "123",
+      "amount": 2,
+      "note": ""
+    }
+  ]
+}

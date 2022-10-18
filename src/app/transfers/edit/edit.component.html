@@ -1,0 +1,68 @@
+<div class="container m-4">
+  <legend>Update Transfer</legend>
+  <div class="mb-3">
+    <label for="accountHolder" class="form-label">Account Holder</label>
+    <input
+      type="text"
+      [(ngModel)]="transferForm.account_holder"
+      class="form-control"
+      id="accountHolder"
+    />
+  </div>
+  <div class="mb-3">
+    <form [formGroup]="reactiveForm" autocomplete="off" novalidate>
+      <label for="IBAN" class="col-sm-2 col-form-label">IBAN:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="IBAN"
+        name="IBAN"
+        formControlName="IBAN"
+        [(ngModel)]="transferForm.IBAN"
+        required
+      />
+
+      <div
+        *ngIf="IBAN.invalid && (IBAN.dirty || IBAN.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="IBAN.errors?.['required']">IBAN is required.</div>
+        <div *ngIf="IBAN.errors?.['iban']">IBAN is invalid</div>
+      </div>
+      <div
+        *ngIf="IBAN.valid && (IBAN.dirty || IBAN.touched)"
+        class="alert alert-danger"
+      >
+        IBAN is valid.
+      </div>
+    </form>
+  </div>
+  <div class="mb-3">
+    <label for="transferDate" class="form-label">Date</label>
+    <input
+      type="text"
+      [(ngModel)]="transferForm.date"
+      class="form-control"
+      id="transferDate"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="transferAmount" class="form-label">Amount</label>
+    <input
+      type="number"
+      [(ngModel)]="transferForm.amount"
+      class="form-control"
+      id="transferAmount"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="transferNote" class="form-label">Note</label>
+    <textarea
+      [(ngModel)]="transferForm.note"
+      class="form-control"
+      id="transferNote"
+      rows="3"
+    ></textarea>
+  </div>
+  <button type="button" class="btn btn-dark" (click)="update()">Update</button>
+</div>
